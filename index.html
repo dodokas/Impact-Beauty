@@ -990,15 +990,23 @@ function afficherConditionsReservation() {
             }
         }
 
-        /* 6. PANIER FLOTTANT - BONNE TAILLE */
+        /* 6. PANIER FLOTTANT - ADAPTÉ MOBILE */
         @media (max-width: 768px) {
             .panier-flottant {
-                width: 60px !important;
-                height: 60px !important;
-                font-size: 1.4rem !important;
-                right: 15px !important;
-                bottom: 15px !important;
+                padding: 0.75rem 1.2rem !important;
+                font-size: 0.82rem !important;
+                right: 12px !important;
+                bottom: 12px !important;
+                max-width: calc(100vw - 24px) !important;
+                border-radius: 50px !important;
             }
+        }
+        @media (max-width: 390px) {
+            .panier-flottant {
+                padding: 0.65rem 1rem !important;
+                font-size: 0.78rem !important;
+            }
+        }
             /* Bouton grille tarifaire mobile */
             .btn-grille-tarifaire {
                 position: static !important;
@@ -2385,6 +2393,7 @@ function afficherConditionsReservation() {
     </div>
 
     <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     // ═══════════════════════════════════════════════════════════
