@@ -314,6 +314,33 @@ async function confirmerPaiementStripe(montant, callback) {
                 transform: translateY(0);
             }
         }
+
+        /* ═══ MOBILE UNIQUEMENT - HERO SECTION ═══ */
+        @media (max-width: 768px) {
+            .acueil-section {
+                height: 100vw !important; /* ratio carré/paysage sur mobile */
+                min-height: 260px !important;
+                max-height: 420px !important;
+            }
+
+            .acueil-section > div:first-child {
+                background-position: center center !important;
+                background-size: cover !important;
+            }
+
+            .bienvenue-section {
+                margin-top: 10vh !important;
+            }
+
+            .bienvenue-section h1 {
+                font-size: clamp(3.5rem, 22vw, 7rem) !important;
+            }
+
+            .bienvenue-section p {
+                font-size: clamp(1.4rem, 5vw, 2.5rem) !important;
+                white-space: nowrap !important;
+            }
+        }
         
         .btn-custom {
             background-color: var(--accent);
