@@ -318,9 +318,11 @@ async function confirmerPaiementStripe(montant, callback) {
         /* ═══ MOBILE UNIQUEMENT - HERO SECTION ═══ */
         @media (max-width: 768px) {
             .acueil-section {
-                height: 100vw !important; /* ratio carré/paysage sur mobile */
-                min-height: 260px !important;
-                max-height: 420px !important;
+                height: 75vw !important;
+                min-height: 300px !important;
+                max-height: 500px !important;
+                align-items: center !important;
+                justify-content: center !important;
             }
 
             .acueil-section > div:first-child {
@@ -329,18 +331,41 @@ async function confirmerPaiementStripe(montant, callback) {
             }
 
             .bienvenue-section {
-                margin-top: 10vh !important;
+                margin-top: 0 !important;
+                padding: 0 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            .bienvenue-section > div {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
             }
 
             .bienvenue-section h1,
             h1.bienvenue-h1 {
-                font-size: 80vw !important;
-                letter-spacing: 0.1rem !important;
+                font-size: 19vw !important;
+                letter-spacing: 0.05rem !important;
+                line-height: 1 !important;
             }
 
             .bienvenue-section p {
-                font-size: clamp(1.4rem, 5vw, 2.5rem) !important;
+                font-size: 6vw !important;
                 white-space: nowrap !important;
+                position: relative !important;
+                bottom: auto !important;
+                left: auto !important;
+                transform: none !important;
+                margin-top: 0.3rem !important;
+            }
+
+            /* Bande défilante plus rapide sur mobile */
+            .scrolling-text-white {
+                animation: scroll 8s linear infinite !important;
             }
         }
         
