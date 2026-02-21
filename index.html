@@ -127,7 +127,7 @@ async function confirmerPaiementStripe(montant, callback) {
 </script>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&family=Parisienne&display=swap" rel="stylesheet">
     
 	
     <style>
@@ -289,6 +289,14 @@ async function confirmerPaiementStripe(montant, callback) {
             position: relative;
             z-index: 2;
         }
+
+        /* Tailles desktop bienvenue */
+        h1.bienvenue-h1 {
+            font-size: clamp(5rem, 25vw, 10.5rem);
+        }
+        .bienvenue-section p {
+            font-size: clamp(2rem, 5vw, 4rem);
+        }
         
         .hero h1 {
             font-size: 4rem;
@@ -322,10 +330,10 @@ async function confirmerPaiementStripe(montant, callback) {
                 padding: 0.15rem 0 !important;
             }
             .logo-img {
-                width: 55px !important;
-                height: 55px !important;
-                margin-top: -8px !important;
-                margin-bottom: -8px !important;
+                width: 120px !important;
+                height: 120px !important;
+                margin-top: -20px !important;
+                margin-bottom: -20px !important;
             }
             .brand-name {
                 font-size: 1.2rem !important;
@@ -359,20 +367,23 @@ async function confirmerPaiementStripe(montant, callback) {
             }
 
             .bienvenue-section h1,
-            h1.bienvenue-h1 {
-                font-size: 80vw !important;
+            h1.bienvenue-h1,
+            .acueil-section h1.bienvenue-h1,
+            .acueil-section .bienvenue-section h1 {
+                font-size: 27vw !important;
                 letter-spacing: 0.05rem !important;
                 line-height: 1 !important;
                 margin-bottom: 0 !important;
             }
 
             /* Chez Impact Beauty collé juste sous BIENVENUE */
-            .bienvenue-section p {
+            .bienvenue-section p,
+            .acueil-section .bienvenue-section p {
                 position: absolute !important;
-                bottom: -0.6em !important;
+                bottom: -1.3em !important;
                 left: 50% !important;
                 transform: translateX(-50%) !important;
-                font-size: 5.5vw !important;
+                font-size: 9vw !important;
                 white-space: nowrap !important;
                 margin: 0 !important;
             }
@@ -1334,13 +1345,7 @@ async function confirmerPaiementStripe(montant, callback) {
     
     /* MOBILES (max 768px) */
     @media (max-width: 768px) {
-        /* Hero */
-        #accueil h1 {
-            font-size: 3rem !important;
-        }
-        #accueil p {
-            font-size: 1.5rem !important;
-        }
+        /* Hero - tailles gérées par le bloc mobile CSS en haut */
         .scrolling-text span {
             font-size: 1.2rem;
             letter-spacing: 0.3rem;
@@ -1624,12 +1629,12 @@ async function confirmerPaiementStripe(montant, callback) {
         <div class="bienvenue-section" data-aos="fade-up" style="position:relative;z-index:2;text-align:center;padding:2rem;margin-top:25vh;">
             <div style="position:relative;display:inline-block;">
                 <!-- BIENVENUE EN ARRIÈRE-PLAN -->
-                <h1 class="bienvenue-h1" style="font-family:'Impact','Arial Black',sans-serif;font-size:clamp(5rem, 25vw, 10.5rem);font-weight:100;letter-spacing:0.4rem;margin:0;text-transform:uppercase;color:#FFAAC3;text-shadow:none;line-height:0.9;position:relative;z-index:1;">
+                <h1 class="bienvenue-h1" style="font-family:'Impact','Arial Black',sans-serif;font-weight:100;letter-spacing:0.4rem;margin:0;text-transform:uppercase;color:#FFAAC3;text-shadow:none;line-height:0.9;position:relative;z-index:1;">
                     BIENVENUE
                 </h1>
                 
                 <!-- "Chez Impact Beauty" PAR-DESSUS EN BLANC -->
-                <p  style="position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);font-family:'Parisienne',cursive;font-size:clamp(1.2rem, 3vw, 2.2rem);color:white;text-shadow:2px 2px 8px rgba(0,0,0,0.5);font-weight:400;margin:0;white-space:nowrap;z-index:3;letter-spacing:0.1rem;">
+                <p  style="position:absolute;bottom:-1.1em;left:50%;transform:translateX(-50%);font-family:'Parisienne',cursive;color:white;text-shadow:2px 2px 8px rgba(0,0,0,0.5);font-weight:400;margin:0;white-space:nowrap;z-index:3;letter-spacing:0.1rem;">
                     Chez Impact Beauty
                 </p>
             </div>
