@@ -331,10 +331,10 @@ async function confirmerPaiementStripe(montant, callback) {
                 min-height: unset !important;
             }
             .logo-img {
-                width: 50px !important;
-                height: 50px !important;
-                margin-top: 0 !important;
-                margin-bottom: 0 !important;
+                width: 85px !important;
+                height: 85px !important;
+                margin-top: -10px !important;
+                margin-bottom: -10px !important;
             }
             .brand-name {
                 font-size: 1.1rem !important;
@@ -375,7 +375,7 @@ async function confirmerPaiementStripe(montant, callback) {
             h1.bienvenue-h1,
             .acueil-section h1.bienvenue-h1,
             .acueil-section .bienvenue-section h1 {
-                font-size: 35vw !important;
+                font-size: clamp(5rem, 25vw, 10.5rem) !important;
                 letter-spacing: 0.05rem !important;
                 line-height: 1 !important;
                 margin-bottom: 0 !important;
@@ -388,7 +388,7 @@ async function confirmerPaiementStripe(montant, callback) {
                 bottom: -1.3em !important;
                 left: 50% !important;
                 transform: translateX(-50%) !important;
-                font-size: 11vw !important;
+                font-size: clamp(2rem, 5vw, 4rem) !important;
                 white-space: nowrap !important;
                 margin: 0 !important;
             }
