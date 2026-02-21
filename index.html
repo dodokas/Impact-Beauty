@@ -327,16 +327,21 @@ async function confirmerPaiementStripe(montant, callback) {
         @media (max-width: 768px) {
             /* Navbar fine */
             .navbar {
-                padding: 0.15rem 0 !important;
+                padding: 0 !important;
+                min-height: unset !important;
             }
             .logo-img {
-                width: 120px !important;
-                height: 120px !important;
-                margin-top: -20px !important;
-                margin-bottom: -20px !important;
+                width: 50px !important;
+                height: 50px !important;
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
             }
             .brand-name {
-                font-size: 1.2rem !important;
+                font-size: 1.1rem !important;
+            }
+            .navbar .container {
+                padding-top: 0.3rem !important;
+                padding-bottom: 0.3rem !important;
             }
 
             /* Hero section */
@@ -370,7 +375,7 @@ async function confirmerPaiementStripe(montant, callback) {
             h1.bienvenue-h1,
             .acueil-section h1.bienvenue-h1,
             .acueil-section .bienvenue-section h1 {
-                font-size: 27vw !important;
+                font-size: 35vw !important;
                 letter-spacing: 0.05rem !important;
                 line-height: 1 !important;
                 margin-bottom: 0 !important;
@@ -383,7 +388,7 @@ async function confirmerPaiementStripe(montant, callback) {
                 bottom: -1.3em !important;
                 left: 50% !important;
                 transform: translateX(-50%) !important;
-                font-size: 9vw !important;
+                font-size: 11vw !important;
                 white-space: nowrap !important;
                 margin: 0 !important;
             }
@@ -1425,13 +1430,7 @@ async function confirmerPaiementStripe(montant, callback) {
     
     /* PETITS MOBILES (max 480px) */
     @media (max-width: 480px) {
-        /* Hero */
-        #accueil h1 {
-            font-size: 2.5rem !important;
-        }
-        #accueil p {
-            font-size: 1.2rem !important;
-        }
+        /* Hero - géré par bloc mobile CSS */
         
         /* Navigation compacte */
         nav ul {
