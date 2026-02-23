@@ -293,7 +293,6 @@ async function confirmerPaiementStripe(montant, callback) {
         /* Tailles desktop bienvenue */
         h1.bienvenue-h1 {
             font-size: clamp(5rem, 25vw, 10.5rem);
-			
         }
         .bienvenue-section p {
             font-size: clamp(2rem, 5vw, 4rem);
@@ -362,7 +361,7 @@ async function confirmerPaiementStripe(montant, callback) {
             /* Texte bienvenue centré en bas de la photo, au-dessus de la bande */
             .bienvenue-section {
                 margin-top: 0 !important;
-                margin-bottom: 5.3rem !important;
+                margin-bottom: 5.5rem !important;
                 padding: 0 !important;
                 text-align: center !important;
             }
@@ -380,7 +379,6 @@ async function confirmerPaiementStripe(montant, callback) {
                 letter-spacing: 0.05rem !important;
                 line-height: 1 !important;
                 margin-bottom: 0 !important;
-				margin-top: 1.9rem !important;
             }
 
             /* Chez Impact Beauty collé juste sous BIENVENUE */
@@ -1476,6 +1474,79 @@ async function confirmerPaiementStripe(montant, callback) {
     }
 
     /* ═══════════════════════════════════════
+       MOBILE / TABLETTE : TAP-TO-REVEAL
+       Sur mobile/tablette, on cache la description,
+       la durée et le bouton. Un tap sur la carte les révèle.
+    ═══════════════════════════════════════ */
+    @media (max-width: 991px) {
+
+        /* --- SOINS (product-card) --- */
+        .product-card .product-description,
+        .product-card .duree-soin,
+        .product-card .btn-add-cart,
+        .product-card .btn-soin-groupe {
+            display: none !important;
+        }
+        .product-card.expanded .product-description,
+        .product-card.expanded .duree-soin,
+        .product-card.expanded .btn-add-cart,
+        .product-card.expanded .btn-soin-groupe {
+            display: block !important;
+        }
+        .product-card.expanded .btn-soin-groupe {
+            display: flex !important;
+        }
+
+        /* Indicateur "tap" sur les cartes soins */
+        .product-card::after {
+            content: '▼ Voir les détails';
+            display: block;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--accent);
+            padding: 0.3rem 0 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .product-card.expanded::after {
+            content: '▲ Réduire';
+        }
+
+        /* --- BOUTIQUE (product-card-shop) --- */
+        .product-card-shop .product-desc-shop,
+        .product-card-shop .btn-add-to-cart {
+            display: none !important;
+        }
+        .product-card-shop.expanded .product-desc-shop,
+        .product-card-shop.expanded .btn-add-to-cart {
+            display: block !important;
+        }
+
+        /* Indicateur "tap" sur les cartes boutique */
+        .product-card-shop::after {
+            content: '▼ Voir les détails';
+            display: block;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--accent);
+            padding: 0.3rem 0 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .product-card-shop.expanded::after {
+            content: '▲ Réduire';
+        }
+
+        /* Animation d'ouverture */
+        .product-card .product-body,
+        .product-card-shop .product-body-shop {
+            transition: all 0.3s ease;
+        }
+    }
+
+    /* ═══════════════════════════════════════
        FIXES MOBILE COMPLETS
     ═══════════════════════════════════════ */
 
@@ -1711,7 +1782,7 @@ async function confirmerPaiementStripe(montant, callback) {
                         <div class="product-body">
                             <h4 class="product-title">Face lift (massage faciale)</h4>
 							<p class="product-description">Illumine le teint terne avec peeling enzymatique, vitamine C et massage drainant pour un visage éclatant.</p>
-                            <p style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 25 min</p>
+                            <p class="duree-soin" style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 25 min</p>
                             <div class="product-price">20,00 €</div>
                             <button class="btn-add-cart" onclick="ajouterSoinAuPanier('Face lift', 20.00, 25)">
                                 <i class="fas fa-plus-circle"></i> Ajouter ce soin
@@ -1730,7 +1801,7 @@ async function confirmerPaiementStripe(montant, callback) {
                         <div class="product-body">
                             <h3 class="product-title">Dermaplanning</h3>
 							<p class="product-description">Illumine le teint terne avec peeling enzymatique, vitamine C et massage drainant pour un visage éclatant.</p>
-                            <p style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 35 min</p>
+                            <p class="duree-soin" style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 35 min</p>
                             <div class="product-price"> A partir de 30,00 €</div>
                             <button class="btn-add-cart" onclick="ajouterSoinAuPanier('Dermaplanning', 30.00, 35)">
                                 <i class="fas fa-plus-circle"></i> Ajouter ce soin
@@ -1749,7 +1820,7 @@ async function confirmerPaiementStripe(montant, callback) {
                         <div class="product-body">
                             <h3 class="product-title">Extractions de points noirs</h3>
 							<p class="product-description">Illumine le teint terne avec peeling enzymatique, vitamine C et massage drainant pour un visage éclatant.</p>
-                            <p style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 45 min</p>
+                            <p class="duree-soin" style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 45 min</p>
                             <div class="product-price">A partir de 30,00 €</div>
                             <button class="btn-add-cart" onclick="ajouterSoinAuPanier('Extractions de points noirs', 30.00, 45)">
                                 <i class="fas fa-plus-circle"></i> Ajouter ce soin
@@ -1768,7 +1839,7 @@ async function confirmerPaiementStripe(montant, callback) {
                         <div class="product-body">
                             <h3 class="product-title">Peeling aux algues/rose de mer</h3>
                             <p class="product-description">Illumine le teint terne avec peeling enzymatique, vitamine C et massage drainant pour un visage éclatant.</p>
-                            <p style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 1h</p>
+                            <p class="duree-soin" style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 1h</p>
                             <div class="product-price">A partir de 75,00 €</div>
                             <button class="btn-add-cart" onclick="ajouterSoinAuPanier('Peeling aux algues/rose de mer', 75.00, 60)">
                                 <i class="fas fa-plus-circle"></i> Ajouter ce soin
@@ -1787,7 +1858,7 @@ async function confirmerPaiementStripe(montant, callback) {
                         <div class="product-body">
                             <h3 class="product-title">Hydrafacial (soins intensifs)</h3>
                             <p class="product-description">Spécial peaux sensibles et réactives. Protocole ultra-doux avec camomille et aloe vera pour calmer et apaiser.</p>
-                            <p style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 1h30</p>
+                            <p class="duree-soin" style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 1h30</p>
                             <div class="product-price">A partir de 90,00 €</div>
                             <button class="btn-add-cart" onclick="ajouterSoinAuPanier('Hydrafacial', 90.00, 90)">
                                 <i class="fas fa-plus-circle"></i> Ajouter ce soin
@@ -1806,7 +1877,7 @@ async function confirmerPaiementStripe(montant, callback) {
                         <div class="product-body">
                             <h3 class="product-title">Hydrafacial jusqu'au 27 février 2026</h3>
                             <p class="product-description">Notre soin le plus complet : diagnostic peau, nettoyage, gommage, extraction, massage, masques et sérum sur-mesure.</p>
-                            <p style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 1h30</p>
+                            <p class="duree-soin" style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 1h30</p>
                             <div class="product-price">50,00 €</div>
                             <button class="btn-add-cart" onclick="ajouterSoinAuPanier('Hydrafacial', 50.00, 90)">
                                 <i class="fas fa-plus-circle"></i> Ajouter ce soin
@@ -1825,7 +1896,7 @@ async function confirmerPaiementStripe(montant, callback) {
                         <div class="product-body">
                             <h3 class="product-title">Microneedling</h3>
                             <p class="product-description">Notre soin le plus complet : diagnostic peau, nettoyage, gommage, extraction, massage, masques et sérum sur-mesure.</p>
-                            <p style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 1h30</p>
+                            <p class="duree-soin" style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 1h30</p>
                             <div class="product-price">A partir de 100,00 €</div>
                             <button class="btn-add-cart" onclick="ajouterSoinAuPanier('Microneedling', 100.00, 90)">
                                 <i class="fas fa-plus-circle"></i> Ajouter ce soin
@@ -1844,7 +1915,7 @@ async function confirmerPaiementStripe(montant, callback) {
                         <div class="product-body">
                             <h3 class="product-title">Microneedling + Hydrafacial</h3>
                             <p class="product-description">Notre soin le plus complet : diagnostic peau, nettoyage, gommage, extraction, massage, masques et sérum sur-mesure.</p>
-                            <p style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 1h30 min</p>
+                            <p class="duree-soin" style="font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="far fa-clock"></i> Durée : 1h30 min</p>
                             <div class="product-price">A partir de 150,00 €</div>
                             <button class="btn-add-cart" onclick="ajouterSoinAuPanier('Microneedling + Hydrafacial', 150.00, 90)">
                                 <i class="fas fa-plus-circle"></i> Ajouter ce soin
@@ -5661,6 +5732,65 @@ async function confirmerPaiementStripe(montant, callback) {
         });
     }
 
+</script>
+
+<!-- TAP-TO-REVEAL : mobile/tablette uniquement -->
+<script>
+(function() {
+    function isMobile() {
+        return window.innerWidth <= 991;
+    }
+
+    function initTapReveal() {
+        if (!isMobile()) return;
+
+        // Soins
+        document.querySelectorAll('.product-card').forEach(function(card) {
+            if (card.dataset.tapInit) return;
+            card.dataset.tapInit = '1';
+            card.addEventListener('click', function(e) {
+                // Ne pas interférer avec les boutons internes
+                if (e.target.closest('button') && card.classList.contains('expanded')) return;
+                if (!card.classList.contains('expanded')) {
+                    card.classList.add('expanded');
+                } else {
+                    if (!e.target.closest('button')) {
+                        card.classList.remove('expanded');
+                    }
+                }
+            });
+        });
+
+        // Boutique
+        document.querySelectorAll('.product-card-shop').forEach(function(card) {
+            if (card.dataset.tapInit) return;
+            card.dataset.tapInit = '1';
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('button') && card.classList.contains('expanded')) return;
+                if (!card.classList.contains('expanded')) {
+                    card.classList.add('expanded');
+                } else {
+                    if (!e.target.closest('button')) {
+                        card.classList.remove('expanded');
+                    }
+                }
+            });
+        });
+    }
+
+    // Init au chargement
+    document.addEventListener('DOMContentLoaded', initTapReveal);
+
+    // Re-init si la fenêtre change de taille
+    window.addEventListener('resize', function() {
+        if (!isMobile()) {
+            // Sur desktop, retirer la classe expanded (au cas où)
+            document.querySelectorAll('.product-card.expanded, .product-card-shop.expanded').forEach(function(c) {
+                c.classList.remove('expanded');
+            });
+        }
+    });
+})();
 </script>
 
 <!-- AOS Animation Library - Chargé à la fin pour éviter les erreurs -->
