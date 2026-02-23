@@ -2408,15 +2408,70 @@ async function confirmerPaiementStripe(montant, callback) {
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi...';
 
         try {
-            await fetch('https://formspree.io/f/xrbgpqde', {
+            // ✅ ÉTAPE 1 : Ajouter l'email à ta liste Brevo
+            await fetch('https://api.brevo.com/v3/contacts', {
                 method: 'POST',
-                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'api-key': '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'
+                },
                 body: JSON.stringify({
                     email: email,
-                    sujet: '📬 Newsletter - Impact Beauty',
-                    message: 'Nouvelle inscription newsletter : ' + email
+                    listIds: [2],
+                    updateEnabled: true
                 })
             });
+
+            // ✅ ÉTAPE 2 : Email de confirmation à la cliente
+            await fetch('https://api.brevo.com/v3/smtp/email', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'api-key': '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'
+                },
+                body: JSON.stringify({
+                    sender: { name: 'Impact Beauty', email: 'dorcasmordiva@gmail.com' },
+                    to: [{ email: email }],
+                    subject: '💄 Bienvenue chez Impact Beauty !',
+                    htmlContent: `
+                        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#fff8f9;padding:2rem;border-radius:12px;">
+                            <h2 style="color:#C9B79C;font-family:Georgia,serif;">Bienvenue chez Impact Beauty 💄</h2>
+                            <p>Bonjour,</p>
+                            <p>Vous êtes bien inscrite à notre newsletter ! Vous recevrez en avant-première :</p>
+                            <ul>
+                                <li>🛍️ Nos nouveaux produits</li>
+                                <li>✨ Nos offres exclusives</li>
+                                <li>💆 Nos conseils beauté</li>
+                            </ul>
+                            <p>Merci de votre confiance,<br><strong>L'équipe Impact Beauty</strong></p>
+                            <hr style="border:1px solid #f5e6ea;margin:1.5rem 0;">
+                            <p style="font-size:0.8rem;color:#999;">
+                                Vous recevez cet email car vous vous êtes inscrite sur notre site.<br>
+                                <a href="mailto:dorcasmordiva@gmail.com?subject=Désabonnement newsletter" style="color:#C9B79C;">Se désabonner</a>
+                            </p>
+                        </div>
+                    `
+                })
+            });
+
+            // ✅ ÉTAPE 3 : Notification pour toi
+            await fetch('https://api.brevo.com/v3/smtp/email', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'api-key': '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'
+                },
+                body: JSON.stringify({
+                    sender: { name: 'Impact Beauty', email: 'dorcasmordiva@gmail.com' },
+                    to: [{ email: 'dorcasmordiva@gmail.com' }],
+                    subject: '🔔 Nouvelle inscription newsletter',
+                    htmlContent: `<p>Nouvelle inscription newsletter : <strong>${email}</strong></p>`
+                })
+            });
+
         } catch(err) {}
 
         btn.disabled = false;
@@ -2451,17 +2506,60 @@ async function confirmerPaiementStripe(montant, callback) {
         const message = document.getElementById('contact-message').value.trim();
 
         try {
-            await fetch('https://formspree.io/f/xrbgpqde', {
+            // ✅ ÉTAPE 1 : Te notifier toi avec le message du contact
+            await fetch('https://api.brevo.com/v3/smtp/email', {
                 method: 'POST',
-                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'api-key': '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'
+                },
                 body: JSON.stringify({
-                    name: nom,
-                    email: email,
-                    telephone: tel,
-                    sujet: sujet,
-                    message: message
+                    sender: { name: 'Impact Beauty', email: 'dorcasmordiva@gmail.com' },
+                    to: [{ email: 'dorcasmordiva@gmail.com' }],
+                    subject: `📩 Nouveau message de ${nom} - Impact Beauty`,
+                    htmlContent: `
+                        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#fff8f9;padding:2rem;border-radius:12px;">
+                            <h2 style="color:#C9B79C;">Nouveau message de contact</h2>
+                            <p><strong>Nom :</strong> ${nom}</p>
+                            <p><strong>Email :</strong> ${email}</p>
+                            <p><strong>Téléphone :</strong> ${tel}</p>
+                            <p><strong>Sujet :</strong> ${sujet}</p>
+                            <p><strong>Message :</strong></p>
+                            <div style="background:#f5e6ea;padding:1rem;border-radius:8px;">${message}</div>
+                        </div>
+                    `
                 })
             });
+
+            // ✅ ÉTAPE 2 : Email de confirmation à la cliente
+            await fetch('https://api.brevo.com/v3/smtp/email', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'api-key': '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'
+                },
+                body: JSON.stringify({
+                    sender: { name: 'Impact Beauty', email: 'dorcasmordiva@gmail.com' },
+                    to: [{ email: email }],
+                    subject: '✅ Votre message a bien été reçu - Impact Beauty',
+                    htmlContent: `
+                        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#fff8f9;padding:2rem;border-radius:12px;">
+                            <h2 style="color:#C9B79C;font-family:Georgia,serif;">Votre message a bien été reçu 💄</h2>
+                            <p>Bonjour ${nom},</p>
+                            <p>Nous avons bien reçu votre message et nous vous répondrons dans les <strong>24 à 48 heures</strong> ouvrées.</p>
+                            <p><strong>Votre message :</strong></p>
+                            <div style="background:#f5e6ea;padding:1rem;border-radius:8px;font-style:italic;">${message}</div>
+                            <br>
+                            <p>À très bientôt,<br><strong>L'équipe Impact Beauty</strong></p>
+                            <hr style="border:1px solid #f5e6ea;margin:1.5rem 0;">
+                            <p style="font-size:0.8rem;color:#999;">Impact Beauty - dorcasmordiva@gmail.com</p>
+                        </div>
+                    `
+                })
+            });
+
         } catch(err) {}
 
         btn.disabled = false;
